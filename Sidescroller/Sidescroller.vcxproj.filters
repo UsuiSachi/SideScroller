@@ -13,5 +13,49 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\main.cpp" />
+    <ClCompile Include="..\src\Pantallas\credits.cpp">
+      <Filter>Pantallas</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Pantallas\game.cpp">
+      <Filter>Pantallas</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Pantallas\game_over.cpp">
+      <Filter>Pantallas</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Pantallas\menu.cpp">
+      <Filter>Pantallas</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Pantallas\pause.cpp">
+      <Filter>Pantallas</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Juego\app.cpp">
+      <Filter>Juego</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Objetos\spaceship.cpp">
+      <Filter>Objetos</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\src\Pantallas\credits.h">
+      <Filter>Pantallas</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Pantallas\game.h">
+      <Filter>Pantallas</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Pantallas\game_over.h">
+      <Filter>Pantallas</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Pantallas\menu.h">
+      <Filter>Pantallas</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Pantallas\pause.h">
+      <Filter>Pantallas</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Juego\app.h">
+      <Filter>Juego</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Objetos\spaceship.h">
+      <Filter>Objetos</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

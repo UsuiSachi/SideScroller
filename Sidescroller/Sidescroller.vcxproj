@@ -19,7 +19,23 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\src\Juego\app.cpp" />
     <ClCompile Include="..\src\main.cpp" />
+    <ClCompile Include="..\src\Objetos\spaceship.cpp" />
+    <ClCompile Include="..\src\Pantallas\credits.cpp" />
+    <ClCompile Include="..\src\Pantallas\game.cpp" />
+    <ClCompile Include="..\src\Pantallas\game_over.cpp" />
+    <ClCompile Include="..\src\Pantallas\menu.cpp" />
+    <ClCompile Include="..\src\Pantallas\pause.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\src\Juego\app.h" />
+    <ClInclude Include="..\src\Objetos\spaceship.h" />
+    <ClInclude Include="..\src\Pantallas\credits.h" />
+    <ClInclude Include="..\src\Pantallas\game.h" />
+    <ClInclude Include="..\src\Pantallas\game_over.h" />
+    <ClInclude Include="..\src\Pantallas\menu.h" />
+    <ClInclude Include="..\src\Pantallas\pause.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
