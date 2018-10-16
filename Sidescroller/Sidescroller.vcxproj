@@ -27,6 +27,7 @@
     <ClCompile Include="..\src\Pantallas\game_over.cpp" />
     <ClCompile Include="..\src\Pantallas\menu.cpp" />
     <ClCompile Include="..\src\Pantallas\pause.cpp" />
+    <ClCompile Include="enemies.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\Juego\app.h" />
@@ -36,6 +37,7 @@
     <ClInclude Include="..\src\Pantallas\game_over.h" />
     <ClInclude Include="..\src\Pantallas\menu.h" />
     <ClInclude Include="..\src\Pantallas\pause.h" />
+    <ClInclude Include="enemies.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
