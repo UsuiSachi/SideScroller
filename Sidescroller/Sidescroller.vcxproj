@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClCompile Include="..\src\Juego\app.cpp" />
     <ClCompile Include="..\src\main.cpp" />
+    <ClCompile Include="..\src\Objetos\meteors.cpp" />
     <ClCompile Include="..\src\Objetos\spaceship.cpp" />
     <ClCompile Include="..\src\Pantallas\credits.cpp" />
     <ClCompile Include="..\src\Pantallas\game.cpp" />
@@ -31,6 +32,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\Juego\app.h" />
+    <ClInclude Include="..\src\Objetos\meteors.h" />
     <ClInclude Include="..\src\Objetos\spaceship.h" />
     <ClInclude Include="..\src\Pantallas\credits.h" />
     <ClInclude Include="..\src\Pantallas\game.h" />

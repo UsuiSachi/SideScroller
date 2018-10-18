@@ -21,7 +21,7 @@ namespace app
 		static float shipAcc = 10.0f;
 		static float shipHeight;
 		static const float shipColliderZ = 24.0f;
-		static const float speedBoost = 7.5f; //variable para que la velocidad se ajuste al GetFrameTime
+		static const float speedBoost = 3.5f; //variable para que la velocidad se ajuste al GetFrameTime
 		Shoot shoot[shipMaxShoots];
 
 		//Imagenes y texturas

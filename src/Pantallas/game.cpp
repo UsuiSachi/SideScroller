@@ -2,11 +2,13 @@
 
 #include <raylib.h>
 
+#include "meteors.h"
 #include "spaceship.h"
 #include "app.h"
 
 using namespace app;
 using namespace	spaceship;
+using namespace	meteors;
 
 namespace app
 {
@@ -55,6 +57,7 @@ namespace app
 			backTexture = LoadTextureFromImage(backImage);
 			
 			InitSpaceship();
+			InitMeteors();
 		}
 		
 
@@ -81,7 +84,7 @@ namespace app
 		static void Update()
 		{
 			UpdateSpaceship();
-			
+			UpdateMeteors();
 		}
 
 		void UpdateFrame()
@@ -96,6 +99,7 @@ namespace app
 			DrawTexture(backTexture,0,0,WHITE);
 			
 			DrawSpaceship();
+			DrawMeteors();
 
 			DrawRectangleRec(botonPausa1, colorRect);
 			DrawRectangleRec(botonPausa2, colorRect);

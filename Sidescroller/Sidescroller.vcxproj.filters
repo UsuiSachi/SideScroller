@@ -37,6 +37,9 @@
     <ClCompile Include="enemies.cpp">
       <Filter>Objetos</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\Objetos\meteors.cpp">
+      <Filter>Objetos</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\Pantallas\credits.h">
@@ -61,6 +64,9 @@
       <Filter>Objetos</Filter>
     </ClInclude>
     <ClInclude Include="enemies.h">
+      <Filter>Objetos</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Objetos\meteors.h">
       <Filter>Objetos</Filter>
     </ClInclude>
   </ItemGroup>
