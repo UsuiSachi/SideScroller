@@ -16,7 +16,7 @@ namespace app
 		static char text2[] = "Musica realizada con Bosca Ceoil";
 		static char text3[] = "Creado por Mariano Martinez";
 		static char text4[] = "MENU";
-		static char text5[] = "GRADIUS V 0.2";
+		static char text5[] = "GRAD10S V 0.2";
 		static char text6[] = "Sonidos realizados con Bfxr";
 		static int sizeText = 0;
 		static int sizeText2 = 0;

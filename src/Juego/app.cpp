@@ -27,7 +27,7 @@ namespace app
 	static void InitGame()
 	{
 		SetExitKey(0);
-		InitWindow(screenWidth, screenHeight, "ASTEROIDS");
+		InitWindow(screenWidth, screenHeight, "GRAD10S");
 		//HideCursor();
 		InitAudioDevice();
 		InitValues();
