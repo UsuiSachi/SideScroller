@@ -38,6 +38,13 @@ namespace app
 		static float shootScale;
 		static Vector2 shootScalePos;
 
+		Rectangle frameRec;
+		int currentFrame;
+
+		int framesCounter;
+		int framesSpeed;
+		Vector2 position;
+
 		//Sonidos 
 		static Sound shootSound;
 		bool pauseSoundShoot = false;
@@ -51,7 +58,7 @@ namespace app
 		{
 			shootSound = LoadSound("res/shoot.wav");
 			shootImage = LoadImage("res/shoot.png");
-			shipImage = LoadImage("res/nave2.png");
+			shipImage = LoadImage("res/spriteSheet.png");
 
 
 			shipTexture = LoadTextureFromImage(shipImage);
@@ -67,9 +74,16 @@ namespace app
 			ship.position.y = GetScreenHeight() / 2 - shipHeight / 2;
 			ship.acceleration = { 0, 0 };
 			ship.speed = { 0, 0 };
-			ship.rotation = 0;
+			ship.rotation = 90;
 			ship.collider = { ship.position.x + sin(ship.rotation*DEG2RAD)*(shipHeight / 2.5f), ship.position.y - cos(ship.rotation*DEG2RAD)*(shipHeight / 2.5f), shipColliderZ };
 			ship.color = LIGHTGRAY;
+
+			frameRec = { 0.0f, 0.0f, (float)shipTexture.width, (float)shipTexture.height/4 };
+			currentFrame = 0;
+
+			framesCounter = 0;
+			framesSpeed = 4;
+			position = { 350.0f, 280.0f };
 
 			for (int i = 0; i < shipMaxShoots; i++)
 			{
@@ -84,8 +98,8 @@ namespace app
 			shootScale = (GetScreenWidth()* 1.0f) / scaleAux;
 			shootScalePos = { (shootScale*shootImage.width) / 2 ,(shootScale*shootImage.height) / 2 };
 
-			destRec.width = shipTexture.width*shipScale;
-			destRec.height = shipTexture.height*shipScale;
+			destRec.width = shipTexture.width;
+			destRec.height = shipTexture.height;
 
 		}
 
@@ -109,7 +123,8 @@ namespace app
 				{
 					if (!shoot[i].active)
 					{
-						shoot[i].position = { ship.position.x + sin(ship.rotation*DEG2RAD)*(shipHeight), ship.position.y - cos(ship.rotation*DEG2RAD)*(shipHeight) };
+						//(ship.position.x + sin(ship.rotation*DEG2RAD)*(shipHeight)), (ship.position.y - cos(ship.rotation*DEG2RAD)*(shipHeight))
+						shoot[i].position = { (ship.position.x + sin(ship.rotation*DEG2RAD)*(shipHeight*2)), (ship.position.y+shipHeight )};
 						shoot[i].active = true;
 						shoot[i].speed.x = speedBoost *sin(ship.rotation*DEG2RAD)*shipSpeed;
 						shoot[i].speed.y = speedBoost *cos(ship.rotation*DEG2RAD)*shipSpeed;
@@ -143,12 +158,24 @@ namespace app
 
 			if (!gameOver)
 			{
+				framesCounter++;
+
+				if (framesCounter >= (60 / framesSpeed))
+				{
+					framesCounter = 0;
+					currentFrame++;
+
+					if (currentFrame > 5) currentFrame = 0;
+
+					frameRec.y = (float)currentFrame*(float)shipTexture.height/4 ;
+				}
+
 				// Player logic: movement
 				destRec.x = ship.position.x;
 				destRec.y = ship.position.y;
 
 				// Collision logic: player vs walls
-				if (ship.position.x >= GetScreenWidth() - shipHeight) ship.position.x = GetScreenWidth() - shipHeight;
+				if (ship.position.x >= GetScreenWidth()) ship.position.x = GetScreenWidth()+shipHeight*2;
 				else if (ship.position.x < (shipHeight)) ship.position.x =shipHeight;
 				if (ship.position.y > (GetScreenHeight() - shipHeight)) ship.position.y = GetScreenHeight() - shipHeight;
 				else if (ship.position.y < (shipHeight)) ship.position.y = shipHeight;
@@ -198,8 +225,8 @@ namespace app
 			Vector2 v1 = { ship.position.x + sinf(ship.rotation*DEG2RAD)*(shipHeight), ship.position.y - cosf(ship.rotation*DEG2RAD)*(shipHeight) };
 			Vector2 v2 = { ship.position.x - cosf(ship.rotation*DEG2RAD)*(shipBaseSize / 2), ship.position.y - sinf(ship.rotation*DEG2RAD)*(shipBaseSize / 2) };
 			Vector2 v3 = { ship.position.x + cosf(ship.rotation*DEG2RAD)*(shipBaseSize / 2), ship.position.y + sinf(ship.rotation*DEG2RAD)*(shipBaseSize / 2) };
-			DrawTexturePro(shipTexture, sourceRect, destRec, { (shipTexture.width / 2)*shipScale,(shipTexture.height / 2)*shipScale }, ship.rotation, WHITE);
-
+			//DrawTexturePro(shipTexture, frameRec, destRec, { (float)(shipTexture.width / 2),(float)(shipTexture.height / 2) }, ship.rotation, WHITE);
+			DrawTextureRec(shipTexture, frameRec, ship.position, WHITE);
 			for (int i = 0; i < shipMaxShoots; i++)
 			{
 				if (shoot[i].active)
