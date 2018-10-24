@@ -175,10 +175,10 @@ namespace app
 				destRec.y = ship.position.y;
 
 				// Collision logic: player vs walls
-				if (ship.position.x >= GetScreenWidth()) ship.position.x = GetScreenWidth()+shipHeight*2;
-				else if (ship.position.x < (shipHeight)) ship.position.x =shipHeight;
-				if (ship.position.y > (GetScreenHeight() - shipHeight)) ship.position.y = GetScreenHeight() - shipHeight;
-				else if (ship.position.y < (shipHeight)) ship.position.y = shipHeight;
+				if (ship.position.x >= GetScreenWidth()-shipHeight*2) ship.position.x = GetScreenWidth()-shipHeight*2;
+				else if (ship.position.x < (shipHeight/2)) ship.position.x =shipHeight/2;
+				if (ship.position.y > (GetScreenHeight() - shipHeight*2)) ship.position.y = GetScreenHeight() - shipHeight*2;
+				else if (ship.position.y < (shipHeight/2)) ship.position.y = shipHeight/2;
 
 				// Shot logic
 				for (int i = 0; i < shipMaxShoots; i++)
