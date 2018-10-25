@@ -6,6 +6,7 @@
 #include "credits.h"
 #include "pause.h"
 #include "spaceship.h"
+#include "meteors.h"
 
 using namespace app;
 using namespace game;
@@ -14,6 +15,7 @@ using namespace gameover;
 using namespace credits;
 using namespace pause;
 using namespace spaceship;
+using namespace meteors;
 
 namespace app
 {
@@ -47,6 +49,7 @@ namespace app
 		{
 				pauseMusic = !pauseMusic;
 				pauseSoundShoot = !pauseSoundShoot;
+				pauseSoundExplosion = !pauseSoundExplosion;
 
 				if (pauseMusic) StopMusicStream(menuSong);
 				else PlayMusicStream(menuSong);

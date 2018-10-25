@@ -25,6 +25,20 @@ namespace app
 
 		static Image backImage;
 		static Texture2D backTexture;
+		static Image backImage2;
+		static Texture2D backTexture2;
+
+		Rectangle frameRec;
+		float currentFrame;
+
+		int framesCounter;
+		int framesSpeed;
+
+		Rectangle frameRec2;
+		float currentFrame2;
+
+		int framesCounter2;
+		int framesSpeed2;
 
 		//Boton pausa
 
@@ -41,7 +55,8 @@ namespace app
 			textPositionX = GetScreenWidth()*0.01f;
 			textPositionY = GetScreenHeight() * 0.97f;
 
-			backImage = LoadImage("res/fondo.png");
+			backImage = LoadImage("res/parallax.png");
+			backImage2 = LoadImage("res/parallax2.png");
 
 			//init boton pausa
 			botonPausa1.x = GetScreenWidth()*0.96f;
@@ -55,6 +70,19 @@ namespace app
 			colorRect = GRAY;
 
 			backTexture = LoadTextureFromImage(backImage);
+			backTexture2 = LoadTextureFromImage(backImage2);
+
+			frameRec = { 0.0f, 0.0f, (float)backTexture.width, (float)backTexture.height };
+			currentFrame = 0;
+
+			framesCounter = 0;
+			framesSpeed = 1;
+
+			frameRec2 = { 0.0f, 0.0f, (float)backTexture2.width, (float)backTexture2.height };
+			currentFrame2 = 0;
+
+			framesCounter2 = 0;
+			framesSpeed2 = 1;
 			
 			InitSpaceship();
 			InitMeteors();
@@ -83,6 +111,29 @@ namespace app
 
 		static void Update()
 		{
+			framesCounter++;
+
+			if (framesCounter >= (60 / framesSpeed))
+			{
+				framesCounter = 0;
+				currentFrame+=0.2;
+
+				if (currentFrame > 1600) currentFrame = 0;
+
+				frameRec.x = (float)currentFrame;
+			}
+			framesCounter2++;
+
+			if (framesCounter2 >= (60 / framesSpeed2))
+			{
+				framesCounter2 = 0;
+				currentFrame2 += 1;
+
+				if (currentFrame2 > 1280) currentFrame2 = 0;
+
+				frameRec2.x = (float)currentFrame2;
+			}
+
 			UpdateSpaceship();
 			UpdateMeteors();
 		}
@@ -96,8 +147,9 @@ namespace app
 		void Draw()
 		{
 			ClearBackground(BLANK);
-			DrawTexture(backTexture,0,0,WHITE);
-			
+			DrawTextureRec(backTexture, frameRec, { 0,0 }, WHITE);
+			DrawTextureRec(backTexture2, frameRec2, { 0,0 }, WHITE);
+
 			DrawSpaceship();
 			DrawMeteors();
 

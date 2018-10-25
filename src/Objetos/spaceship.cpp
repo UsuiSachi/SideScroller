@@ -43,7 +43,6 @@ namespace app
 
 		int framesCounter;
 		int framesSpeed;
-		Vector2 position;
 
 		//Sonidos 
 		static Sound shootSound;
@@ -84,7 +83,6 @@ namespace app
 
 			framesCounter = 0;
 			framesSpeed = 4;
-			position = { 350.0f, 280.0f };
 
 			for (int i = 0; i < shipMaxShoots; i++)
 			{
@@ -166,7 +164,7 @@ namespace app
 					framesCounter = 0;
 					currentFrame++;
 
-					if (currentFrame > 5) currentFrame = 0;
+					if (currentFrame > 4) currentFrame = 0;
 
 					frameRec.y = (float)currentFrame*(float)shipTexture.height/4 ;
 				}

@@ -1,6 +1,13 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [0.3] 2018-10-25
+### Added 
+- Se agrego animacion a la nave
+- Se agregaron los archivos parallax, parallax2 y spritesheet a la carpeta res 
+- Se genero un efecto parallax con las imagenes agregadas
+- Fix en el .gitignore  
+
 ## [0.2] 2018-10-18
 ### Added 
 - Se agregaron los archivos enemies.cpp, enemies.h, meteors.cpp y meteors.h
