@@ -52,7 +52,7 @@ namespace app
 			init = false;
 
 			destroyedMeteorsCount = 0;
-			meteorSpeed = 1;
+			meteorSpeed = 2;
 
 			for (int i = 0; i < maxBigMeteors; i++)
 			{
@@ -62,7 +62,7 @@ namespace app
 
 				bigMeteor[i].position = { posx, posy };
 
-				velx = -meteorSpeed;
+				velx = GetRandomValue(-meteorSpeed, -meteorSpeed-1);
 				vely = GetRandomValue(-meteorSpeed, meteorSpeed);
 
 				while (!correctRange)

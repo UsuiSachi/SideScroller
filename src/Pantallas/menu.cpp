@@ -13,10 +13,11 @@ namespace app
 	namespace menu
 	{
 		static char text1[] = "JUGAR";
-		static char text2[] = "SONIDO";
+		static char text2[] = "SONIDO ON";
 		static char text3[] = "CREDITOS";
 		static char text4[] = "SALIR";
 		static char text5[] = "V 0.2";
+		static char text6[] = "SONIDO OFF";
 		static int sizeText2 = 0;
 		static int sizeText3 = 0;
 		static int text1PositionX = 0;
@@ -29,6 +30,8 @@ namespace app
 		static int text4PositionY = 0;
 		static int text5PositionX = 0;
 		static int text5PositionY = 0;
+		static int text6PositionX = 0;
+		static int text6PositionY = 0;
 		static Vector2 mousePoint;
 		static Rectangle rect1;
 		static Rectangle rect2;
@@ -64,6 +67,8 @@ namespace app
 			text4PositionY = GetScreenHeight() / 2 + GetScreenHeight() * 0.3333333;
 			text5PositionX = GetScreenWidth() * 0.05;
 			text5PositionY = GetScreenHeight() * 0.95;
+			text6PositionX = GetScreenWidth() / 2 - MeasureText(text6, sizeText2) / 2;
+			text6PositionY = GetScreenHeight() / 2 + GetScreenHeight() * 0.1333333;
 
 			colorRect1 = PURPLE;
 			colorRect2 = PURPLE;
@@ -101,7 +106,10 @@ namespace app
 			{
 				colorRect1.a = 120;
 
-				if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) mute = !mute;
+				if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
+				{
+					mute = !mute;
+				}
 			}
 			else colorRect1.a = 255;
 
@@ -127,6 +135,8 @@ namespace app
 				if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) currentScreen = Gameplay;
 			}
 			else colorRect4.a = 255;
+
+			
 		}
 
 		void DrawMenu()
@@ -138,7 +148,13 @@ namespace app
 			DrawRectangleRec(rect3, colorRect3);
 			DrawRectangleRec(rect4, colorRect4);
 			DrawText(text1, text1PositionX, text1PositionY, sizeText2, BLACK);
-			DrawText(text2, text2PositionX, text2PositionY, sizeText2, BLACK);
+			if (mute)
+			{
+				DrawText(text2, text2PositionX, text2PositionY, sizeText2, BLACK);
+			}
+			else
+				DrawText(text6, text6PositionX, text6PositionY, sizeText2, BLACK);
+			
 			DrawText(text3, text3PositionX, text3PositionY, sizeText2, BLACK);
 			DrawText(text4, text4PositionX, text4PositionY, sizeText2, BLACK);
 			DrawText(text5, text5PositionX, text5PositionY, sizeText2, WHITE);

@@ -28,17 +28,17 @@ namespace app
 		static Image backImage2;
 		static Texture2D backTexture2;
 
-		Rectangle frameRec;
-		float currentFrame;
+		static Rectangle frameRec;
+		static float currentFrame;
 
-		float framesCounter;
-		float framesSpeed;
+		static float framesCounter;
+		static float framesSpeed;
 
-		Rectangle frameRec2;
-		float currentFrame2;
+		static Rectangle frameRec2;
+		static float currentFrame2;
 
-		float framesCounter2;
-		float framesSpeed2;
+		static float framesCounter2;
+		static float framesSpeed2;
 
 		//Boton pausa
 
@@ -46,6 +46,11 @@ namespace app
 		static Rectangle botonPausa2;
 		static Color colorRect;
 		static Vector2 mousePoint;
+
+		//Puntaje 
+
+		int score;
+		
 
 		static bool init;
 
@@ -83,6 +88,8 @@ namespace app
 
 			framesCounter2 = 0;
 			framesSpeed2 = 0.001f;
+
+			score = 0;
 			
 			InitSpaceship();
 			InitMeteors();

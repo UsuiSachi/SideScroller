@@ -135,6 +135,11 @@ namespace app
 				}
 			}
 			else colorRect2.a = 255;
+
+			if (mute)
+				colorRect2 = LIGHTGRAY;
+			else
+				colorRect2 = PURPLE;
 		}
 
 		void DrawPause()

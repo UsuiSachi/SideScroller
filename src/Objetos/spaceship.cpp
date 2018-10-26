@@ -38,11 +38,11 @@ namespace app
 		static float shootScale;
 		static Vector2 shootScalePos;
 
-		Rectangle frameRec;
-		int currentFrame;
+		static Rectangle frameRec;
+		static int currentFrame;
 
-		float framesCounter;
-		float framesSpeed;
+		static float framesCounter;
+		static float framesSpeed;
 
 		//Sonidos 
 		static Sound shootSound;
