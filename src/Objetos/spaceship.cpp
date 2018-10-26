@@ -41,8 +41,8 @@ namespace app
 		Rectangle frameRec;
 		int currentFrame;
 
-		int framesCounter;
-		int framesSpeed;
+		float framesCounter;
+		float framesSpeed;
 
 		//Sonidos 
 		static Sound shootSound;
@@ -55,9 +55,9 @@ namespace app
 
 		void InitSpaceship()
 		{
-			shootSound = LoadSound("res/shoot.wav");
-			shootImage = LoadImage("res/shoot.png");
-			shipImage = LoadImage("res/spriteSheet.png");
+			shootSound = LoadSound("res/assets/shoot.wav");
+			shootImage = LoadImage("res/assets/shoot.png");
+			shipImage = LoadImage("res/assets/spriteSheet.png");
 
 
 			shipTexture = LoadTextureFromImage(shipImage);
@@ -82,7 +82,7 @@ namespace app
 			currentFrame = 0;
 
 			framesCounter = 0;
-			framesSpeed = 4;
+			framesSpeed =0.05f;
 
 			for (int i = 0; i < shipMaxShoots; i++)
 			{
@@ -157,9 +157,9 @@ namespace app
 
 			if (!gameOver)
 			{
-				framesCounter++;
+				framesCounter+=GetFrameTime();
 
-				if (framesCounter >= (60 / framesSpeed))
+				if (framesCounter >= framesSpeed)
 				{
 					framesCounter = 0;
 					currentFrame++;

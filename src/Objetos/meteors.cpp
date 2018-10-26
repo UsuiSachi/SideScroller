@@ -14,7 +14,7 @@ namespace app
 {
 	namespace meteors
 	{
-		static const int maxBigMeteors = 4;
+		static const int maxBigMeteors = 6;
 		
 
 		static Meteor bigMeteor[maxBigMeteors];
@@ -41,8 +41,8 @@ namespace app
 		void InitMeteors()
 		{
 
-			explosionSound = LoadSound("res/explosion.wav");
-			meteorImage = LoadImage("res/asteroide.png");
+			explosionSound = LoadSound("res/assets/explosion.wav");
+			meteorImage = LoadImage("res/assets/asteroide.png");
 	
 			meteorTexture = LoadTextureFromImage(meteorImage);
 
@@ -56,7 +56,7 @@ namespace app
 
 			for (int i = 0; i < maxBigMeteors; i++)
 			{
-				posx = GetScreenWidth()-bigMeteor[i].radius;
+				posx = GetRandomValue(GetScreenWidth()-bigMeteor[i].radius,GetScreenWidth()-500);
 
 				posy = GetRandomValue(0, GetScreenHeight());
 

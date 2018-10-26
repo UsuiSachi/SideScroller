@@ -31,14 +31,14 @@ namespace app
 		Rectangle frameRec;
 		float currentFrame;
 
-		int framesCounter;
-		int framesSpeed;
+		float framesCounter;
+		float framesSpeed;
 
 		Rectangle frameRec2;
 		float currentFrame2;
 
-		int framesCounter2;
-		int framesSpeed2;
+		float framesCounter2;
+		float framesSpeed2;
 
 		//Boton pausa
 
@@ -55,8 +55,8 @@ namespace app
 			textPositionX = GetScreenWidth()*0.01f;
 			textPositionY = GetScreenHeight() * 0.97f;
 
-			backImage = LoadImage("res/parallax.png");
-			backImage2 = LoadImage("res/parallax2.png");
+			backImage = LoadImage("res/assets/parallax.png");
+			backImage2 = LoadImage("res/assets/parallax2.png");
 
 			//init boton pausa
 			botonPausa1.x = GetScreenWidth()*0.96f;
@@ -76,13 +76,13 @@ namespace app
 			currentFrame = 0;
 
 			framesCounter = 0;
-			framesSpeed = 1;
+			framesSpeed = 0.001f;
 
 			frameRec2 = { 0.0f, 0.0f, (float)backTexture2.width, (float)backTexture2.height };
 			currentFrame2 = 0;
 
 			framesCounter2 = 0;
-			framesSpeed2 = 1;
+			framesSpeed2 = 0.001f;
 			
 			InitSpaceship();
 			InitMeteors();
@@ -111,20 +111,20 @@ namespace app
 
 		static void Update()
 		{
-			framesCounter++;
+			framesCounter+=GetFrameTime();
 
-			if (framesCounter >= (60 / framesSpeed))
+			if (framesCounter >= framesSpeed)
 			{
 				framesCounter = 0;
-				currentFrame+=0.2;
+				currentFrame+=0.1;
 
-				if (currentFrame > 1600) currentFrame = 0;
+				if (currentFrame > 1594) currentFrame = 0;
 
 				frameRec.x = (float)currentFrame;
 			}
-			framesCounter2++;
+			framesCounter2+=GetFrameTime();
 
-			if (framesCounter2 >= (60 / framesSpeed2))
+			if (framesCounter2 >= framesSpeed2)
 			{
 				framesCounter2 = 0;
 				currentFrame2 += 1;
