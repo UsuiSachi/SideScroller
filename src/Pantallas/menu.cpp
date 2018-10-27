@@ -16,7 +16,7 @@ namespace app
 		static char text2[] = "SONIDO ON";
 		static char text3[] = "CREDITOS";
 		static char text4[] = "SALIR";
-		static char text5[] = "V 0.2";
+		static char text5[] = "V 1.0";
 		static char text6[] = "SONIDO OFF";
 		static int sizeText2 = 0;
 		static int sizeText3 = 0;
@@ -53,7 +53,7 @@ namespace app
 		
 		void InitMenu()
 		{
-			//menuImage = LoadImage("res/menuBack.png");
+			menuImage = LoadImage("res/assets/backMenu.png");
 			menuImageTexture = LoadTextureFromImage(menuImage);
 
 			sizeText2 = (GetScreenWidth() * 20) / scaleAux1;
@@ -146,7 +146,7 @@ namespace app
 		void DrawMenu()
 		{
 			ClearBackground(WHITE);
-			//DrawTextureEx(menuImageTexture, { 0,0 }, 0, scaleBackground, WHITE);
+			DrawTextureEx(menuImageTexture, { 0,0 }, 0, scaleBackground, WHITE);
 			DrawRectangleRec(rect1, colorRect1);
 			DrawRectangleRec(rect2, colorRect2);
 			DrawRectangleRec(rect3, colorRect3);
