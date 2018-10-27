@@ -41,6 +41,7 @@ namespace app
 		static Color colorRect2;
 		static Color colorRect3;
 		static Color colorRect4;
+		static bool cambiarTexto;
 
 		static const int scaleAux1 = 800;
 		static const int scaleAux2 = 1600;
@@ -69,6 +70,8 @@ namespace app
 			text5PositionY = GetScreenHeight() * 0.95;
 			text6PositionX = GetScreenWidth() / 2 - MeasureText(text6, sizeText2) / 2;
 			text6PositionY = GetScreenHeight() / 2 + GetScreenHeight() * 0.1333333;
+
+			cambiarTexto = false;
 
 			colorRect1 = PURPLE;
 			colorRect2 = PURPLE;
@@ -109,6 +112,7 @@ namespace app
 				if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
 				{
 					mute = !mute;
+					cambiarTexto = !cambiarTexto;
 				}
 			}
 			else colorRect1.a = 255;
@@ -148,7 +152,7 @@ namespace app
 			DrawRectangleRec(rect3, colorRect3);
 			DrawRectangleRec(rect4, colorRect4);
 			DrawText(text1, text1PositionX, text1PositionY, sizeText2, BLACK);
-			if (mute)
+			if (!cambiarTexto)
 			{
 				DrawText(text2, text2PositionX, text2PositionY, sizeText2, BLACK);
 			}

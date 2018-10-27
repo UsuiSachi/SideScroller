@@ -15,10 +15,10 @@ namespace app
 		bool mute = false;
 		static char text1[] = "PAUSA";
 		static char text2[] = "MENU";
-		static char text3[] = "SONIDO";
+		static char text3[] = "SONIDO ON";
 		static char text4[] = "REINICIAR";
 		static char text5[] = "SEGUIR";
-		static char textAux[] = "SALIR";
+		static char textAux[] = "SONIDO OFF";
 		static int sizeText1 = 0;
 		static int sizeText2 = 0;
 		static int sizeText3 = 0;
@@ -32,6 +32,8 @@ namespace app
 		static int text4PositionY = 0;
 		static int text5PositionX = 0;
 		static int text5PositionY = 0;
+		static int textAuxPositionX = 0;
+		static int textAuxPositionY = 0;
 		static Vector2 mousePoint;
 		static Rectangle rect1;
 		static Rectangle rect2;
@@ -42,6 +44,8 @@ namespace app
 		static Color colorRect3;
 		static Color colorRect4;
 		static Color backGround;
+
+		static bool cambiarTexto;
 
 		static const int scaleAux1 = 800;
 		static const int scaleAux2 = 1600;
@@ -61,6 +65,10 @@ namespace app
 			text4PositionY = GetScreenHeight() / 2 + GetScreenHeight() * 0.3333333;
 			text5PositionX = GetScreenWidth() / 2 - MeasureText(text5, sizeText2) / 2;
 			text5PositionY = GetScreenHeight() / 2 + GetScreenHeight() * 0.0333333;
+			textAuxPositionX = GetScreenWidth() / 2 - MeasureText(textAux, sizeText2) / 2;
+			textAuxPositionY = GetScreenHeight() / 2 + GetScreenHeight() * 0.2333333;
+
+			cambiarTexto = false;
 
 			colorRect1 = PURPLE;
 			colorRect2 = PURPLE;
@@ -132,14 +140,11 @@ namespace app
 				if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
 				{
 					mute = !mute;
+					cambiarTexto = !cambiarTexto;
 				}
 			}
 			else colorRect2.a = 255;
 
-			if (mute)
-				colorRect2 = LIGHTGRAY;
-			else
-				colorRect2 = PURPLE;
 		}
 
 		void DrawPause()
@@ -151,7 +156,12 @@ namespace app
 			DrawRectangleRec(rect4, colorRect4);
 			DrawText(text1, textPositionX, textPositionY, sizeText1, RAYWHITE);
 			DrawText(text2, text2PositionX, text2PositionY, sizeText2, BLACK);
-			DrawText(text3, text3PositionX, text3PositionY, sizeText2, BLACK);
+			if (!cambiarTexto)
+			{
+				DrawText(text3, text3PositionX, text3PositionY, sizeText2, BLACK);
+			}
+			else
+				DrawText(textAux, textAuxPositionX, textAuxPositionY, sizeText2, BLACK);
 			DrawText(text4, text4PositionX, text4PositionY, sizeText2, BLACK);
 			DrawText(text5, text5PositionX, text5PositionY, sizeText2, BLACK);
 		}
