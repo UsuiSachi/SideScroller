@@ -6,6 +6,9 @@ All notable changes to this project will be documented in this file.
 - Se modifico el boton del sonido para que se note cuando esta activado y cuando no
 - Se modifico la posicion de los asteroides para que no queden mal posicionados en el eje Y 
 -Se modifico el nombre de la funcion Draw a DrawGameplay para dar mas claridad
+-Se agregaron las funciones ResetMeteors y ResetSpaceship 
+-Se realizo el unload al salir de cada pantalla.
+-Se agrego en la pantalla de creditos los creditos de las imagenes.
 
 ## [0.3] 2018-10-25
 ### Added 

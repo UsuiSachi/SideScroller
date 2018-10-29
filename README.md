@@ -8,9 +8,9 @@ Juego basado en Gradius, popular videojuego de arcade. Gradius es un matamarcian
 
 ## Screenshot:
 
-![1]()
-![2]()
-![3]()
+![1](screenshots/ss1.png)
+![2](screenshots/ss2.png)
+![3](screenshots/ss3.png)
 
 
 ## Musica: 
