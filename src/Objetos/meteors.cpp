@@ -23,6 +23,9 @@ namespace app
 		static float meteorSpeed;
 		static const float speedBoost = 100.0f; //variable para que la velocidad se ajuste al GetFrameTime
 		static int initialCorrection = 150;//para que los meteoros no tomen la posicion de la nave en el inicio
+		static float posx, posy;
+		static float velx, vely;
+		static bool correctRange;
 		//Imagenes y texturas
 		static Image meteorImage;
 		static Texture2D meteorTexture;
@@ -40,15 +43,12 @@ namespace app
 
 		void InitMeteors()
 		{
-
 			explosionSound = LoadSound("res/assets/explosion.wav");
 			meteorImage = LoadImage("res/assets/asteroide.png");
 	
 			meteorTexture = LoadTextureFromImage(meteorImage);
 
-			float posx, posy;
-			float velx, vely;
-			bool correctRange = false;
+			correctRange = false;
 			init = false;
 
 			destroyedMeteorsCount = 0;
@@ -58,7 +58,7 @@ namespace app
 			{
 				posx = GetRandomValue(GetScreenWidth()-bigMeteor[i].radius,GetScreenWidth()-500);
 
-				posy = GetRandomValue(0, GetScreenHeight());
+				posy = GetRandomValue(0+ bigMeteor[i].radius*2, GetScreenHeight()- bigMeteor[i].radius*2);
 
 				bigMeteor[i].position = { posx, posy };
 
@@ -109,14 +109,23 @@ namespace app
 						bigMeteor[i].position.y += bigMeteor[i].speed.y*GetFrameTime() * speedBoost;
 
 						// Collision logic: meteor vs wall
-						if (bigMeteor[i].position.x > GetScreenWidth() + bigMeteor[i].radius) bigMeteor[i].position.x = -(bigMeteor[i].radius);
+						if (bigMeteor[i].position.x > GetScreenWidth() + bigMeteor[i].radius)
+						{
+							bigMeteor[i].position.x = -(bigMeteor[i].radius);
+						}
 						else if (bigMeteor[i].position.x < 0 - bigMeteor[i].radius)
 						{
 							bigMeteor[i].position.x = GetScreenWidth() + bigMeteor[i].radius;
 							bigMeteor[i].position.y= GetRandomValue(bigMeteor[i].radius, GetScreenHeight());
 						}
-						if (bigMeteor[i].position.y > GetScreenHeight() - bigMeteor[i].radius) bigMeteor[i].speed.y *= -1;
-						else if (bigMeteor[i].position.y < 0 + bigMeteor[i].radius) bigMeteor[i].speed.y *= -1;
+						if (bigMeteor[i].position.y > GetScreenHeight() - bigMeteor[i].radius)
+						{
+							bigMeteor[i].speed.y *= -1;
+						}
+						else if (bigMeteor[i].position.y < 0 + bigMeteor[i].radius)
+						{
+							bigMeteor[i].speed.y *= -1;
+						}
 					}
 				}
 
@@ -168,6 +177,52 @@ namespace app
 				}
 				else DrawCircleV(bigMeteor[i].position, bigMeteor[i].radius, BLANK);
 			}
+		}
+
+		void UnloadMeteors()
+		{
+			UnloadSound(explosionSound);
+			UnloadTexture(meteorTexture);
+			UnloadImage(meteorImage);
+		}
+
+		void ResetMeteors()
+		{
+			correctRange = false;
+			init = false;
+
+			destroyedMeteorsCount = 0;
+			meteorSpeed = 2;
+
+			for (int i = 0; i < maxBigMeteors; i++)
+			{
+				posx = GetRandomValue(GetScreenWidth() - bigMeteor[i].radius, GetScreenWidth() - 500);
+
+				posy = GetRandomValue(0 + bigMeteor[i].radius * 2, GetScreenHeight() - bigMeteor[i].radius * 2);
+
+				bigMeteor[i].position = { posx, posy };
+
+				velx = GetRandomValue(-meteorSpeed, -meteorSpeed - 1);
+				vely = GetRandomValue(-meteorSpeed, meteorSpeed);
+
+				while (!correctRange)
+				{
+					if (velx == 0 && vely == 0)
+					{
+						velx = -meteorSpeed;
+						vely = GetRandomValue(-meteorSpeed, meteorSpeed);
+					}
+					else correctRange = true;
+				}
+
+				bigMeteor[i].speed = { velx, vely };
+				bigMeteor[i].radius = (50 * GetScreenWidth()) / scaleAux;
+				bigMeteor[i].active = true;
+				bigMeteor[i].color = BLUE;
+			}
+
+			bigMeteorScale = (GetScreenWidth()* 0.25f) / scaleAux;
+			bigMeteorScalePos = { (bigMeteorScale*meteorImage.width) / 2 ,(bigMeteorScale*meteorImage.height) / 2 };
 		}
 	}
 }

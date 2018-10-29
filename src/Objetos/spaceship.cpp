@@ -235,5 +235,54 @@ namespace app
 				}
 			}
 		}
+
+		void UnloadSpaceship()
+		{
+			UnloadSound(shootSound);
+			UnloadTexture(shipTexture);
+			UnloadTexture(shootTexture);
+			UnloadImage(shootImage);
+			UnloadImage(shipImage);
+		}
+
+		void ResetSpaceship()
+		{
+			sourceRect.height = shipTexture.height;
+			sourceRect.width = shipTexture.width;
+			sourceRect.x = 0;
+			sourceRect.y = 0;
+
+			shipHeight = (shipBaseSize / 2) / tanf(20 * DEG2RAD);
+
+			ship.position.x = GetScreenWidth()*0.1f;
+			ship.position.y = GetScreenHeight() / 2 - shipHeight / 2;
+			ship.acceleration = { 0, 0 };
+			ship.speed = { 0, 0 };
+			ship.rotation = 90;
+			ship.collider = { ship.position.x + shipHeight * 1.5f , ship.position.y + shipHeight, shipColliderZ };
+			ship.color = LIGHTGRAY;
+
+			frameRec = { 0.0f, 0.0f, (float)shipTexture.width, (float)shipTexture.height / 4 };
+			currentFrame = 0;
+
+			framesCounter = 0;
+			framesSpeed = 0.05f;
+
+			for (int i = 0; i < shipMaxShoots; i++)
+			{
+				shoot[i].position = { 0, 0 };
+				shoot[i].speed = { 0, 0 };
+				shoot[i].radius = 3;
+				shoot[i].active = false;
+				shoot[i].color = WHITE;
+			}
+
+			shipScale = (GetScreenWidth()* 0.08f) / scaleAux;
+			shootScale = (GetScreenWidth()* 1.0f) / scaleAux;
+			shootScalePos = { (shootScale*shootImage.width) / 2 ,(shootScale*shootImage.height) / 2 };
+
+			destRec.width = shipTexture.width;
+			destRec.height = shipTexture.height;
+		}
 	}
 }

@@ -30,9 +30,7 @@ namespace app
 	{
 		SetExitKey(0);
 		InitWindow(screenWidth, screenHeight, "GRAD10S");
-		//HideCursor();
 		InitAudioDevice();
-		InitValues();
 		InitMenu();
 		InitCredits();
 		InitGameover();
@@ -89,7 +87,7 @@ namespace app
 			DrawCredits();
 			break;
 		case Gameplay:
-			Draw();
+			DrawGameplay();
 			break;
 		case GameOver:
 			DrawGameOver();

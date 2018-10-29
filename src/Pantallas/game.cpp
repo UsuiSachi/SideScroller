@@ -103,13 +103,19 @@ namespace app
 			{
 				colorRect.a = 120;
 
-				if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) currentScreen = Pause;
+				if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
+				{
+					currentScreen = Pause;
+				}
 			}
 			else colorRect.a = 255;
 
 			if (CheckCollisionPointRec(mousePoint, botonPausa2))
 			{
-				if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) currentScreen = Pause;
+				if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
+				{
+					currentScreen = Pause;
+				}
 			}
 
 		}
@@ -151,7 +157,7 @@ namespace app
 			Update();
 		}
 
-		void Draw()
+		void DrawGameplay()
 		{
 			ClearBackground(BLANK);
 			DrawTextureRec(backTexture, frameRec, { 0,0 }, WHITE);
@@ -167,8 +173,48 @@ namespace app
 
 		void ResetValues()
 		{
-			InitValues();
+			sizeText = (GetScreenWidth() * 20) / 1600;
+			textPositionX = GetScreenWidth()*0.01f;
+			textPositionY = GetScreenHeight() * 0.97f;
+
+			//init boton pausa
+			botonPausa1.x = GetScreenWidth()*0.96f;
+			botonPausa1.y = GetScreenHeight()*0.02f;
+			botonPausa1.height = (GetScreenWidth() * 40) / 1600;
+			botonPausa1.width = (GetScreenWidth() * 15) / 1600;
+			botonPausa2.x = GetScreenWidth()*0.975f;
+			botonPausa2.y = GetScreenHeight()*0.02f;
+			botonPausa2.height = (GetScreenWidth() * 40) / 1600;
+			botonPausa2.width = (GetScreenWidth() * 15) / 1600;
+			colorRect = GRAY;
+
+			frameRec = { 0.0f, 0.0f, (float)backTexture.width, (float)backTexture.height };
+			currentFrame = 0;
+
+			framesCounter = 0;
+			framesSpeed = 0.001f;
+
+			frameRec2 = { 0.0f, 0.0f, (float)backTexture2.width, (float)backTexture2.height };
+			currentFrame2 = 0;
+
+			framesCounter2 = 0;
+			framesSpeed2 = 0.001f;
+
+			score = 0;
+
+			ResetSpaceship();
+			ResetMeteors();
 			gameOver = false;
+		}
+
+		void UnloadGameplay()
+		{
+			UnloadMeteors();
+			UnloadSpaceship();
+			UnloadTexture(backTexture);
+			UnloadTexture(backTexture2);
+			UnloadImage(backImage);
+			UnloadImage(backImage2);
 		}
 	}
 }

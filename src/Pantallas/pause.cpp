@@ -3,10 +3,12 @@
 #include <raylib.h>
 
 #include "game.h"
+#include "menu.h"
 #include "app.h"
 
 using namespace app;
 using namespace game;
+using namespace menu;
 
 namespace app
 {
@@ -106,7 +108,10 @@ namespace app
 			{
 				colorRect4.a = 120;
 
-				if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) currentScreen = Gameplay;
+				if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
+				{
+					currentScreen = Gameplay;
+				}
 			}
 			else colorRect4.a = 255;
 
@@ -129,7 +134,9 @@ namespace app
 				if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
 				{
 					currentScreen = Menu;
+					InitMenu();
 					ResetValues();
+					UnloadGameplay();
 				}
 			}
 			else colorRect1.a = 255;

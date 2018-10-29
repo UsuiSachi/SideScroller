@@ -1,6 +1,12 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+##[Untaged]
+- Se agrego la imagen de fondo en el menu
+- Se modifico el boton del sonido para que se note cuando esta activado y cuando no
+- Se modifico la posicion de los asteroides para que no queden mal posicionados en el eje Y 
+-Se modifico el nombre de la funcion Draw a DrawGameplay para dar mas claridad
+
 ## [0.3] 2018-10-25
 ### Added 
 - Se agrego animacion a la nave

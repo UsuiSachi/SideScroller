@@ -34,10 +34,10 @@
     <ClCompile Include="..\src\Objetos\spaceship.cpp">
       <Filter>Objetos</Filter>
     </ClCompile>
-    <ClCompile Include="enemies.cpp">
+    <ClCompile Include="..\src\Objetos\meteors.cpp">
       <Filter>Objetos</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\Objetos\meteors.cpp">
+    <ClCompile Include="buttons.cpp">
       <Filter>Objetos</Filter>
     </ClCompile>
   </ItemGroup>
@@ -63,10 +63,10 @@
     <ClInclude Include="..\src\Objetos\spaceship.h">
       <Filter>Objetos</Filter>
     </ClInclude>
-    <ClInclude Include="enemies.h">
+    <ClInclude Include="..\src\Objetos\meteors.h">
       <Filter>Objetos</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\Objetos\meteors.h">
+    <ClInclude Include="buttons.h">
       <Filter>Objetos</Filter>
     </ClInclude>
   </ItemGroup>
