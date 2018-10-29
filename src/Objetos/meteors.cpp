@@ -26,6 +26,7 @@ namespace app
 		static float posx, posy;
 		static float velx, vely;
 		static bool correctRange;
+
 		//Imagenes y texturas
 		static Image meteorImage;
 		static Texture2D meteorTexture;

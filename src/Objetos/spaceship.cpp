@@ -74,7 +74,6 @@ namespace app
 			ship.acceleration = { 0, 0 };
 			ship.speed = { 0, 0 };
 			ship.rotation = 90;
-			//ship.collider = { ship.position.x + sin(ship.rotation*DEG2RAD)*(shipHeight / 2.5f), ship.position.y - cos(ship.rotation*DEG2RAD)*(shipHeight / 2.5f), shipColliderZ };
 			ship.collider = { ship.position.x + shipHeight * 1.5f , ship.position.y+shipHeight, shipColliderZ };
 			ship.color = LIGHTGRAY;
 
@@ -122,7 +121,6 @@ namespace app
 				{
 					if (!shoot[i].active)
 					{
-						//(ship.position.x + sin(ship.rotation*DEG2RAD)*(shipHeight)), (ship.position.y - cos(ship.rotation*DEG2RAD)*(shipHeight))
 						shoot[i].position = { (ship.position.x + sin(ship.rotation*DEG2RAD)*(shipHeight*2)), (ship.position.y+shipHeight )};
 						shoot[i].active = true;
 						shoot[i].speed.x = speedBoost *sin(ship.rotation*DEG2RAD)*shipSpeed;
@@ -157,7 +155,7 @@ namespace app
 
 			if (!gameOver)
 			{
-				framesCounter+=GetFrameTime();
+				framesCounter += GetFrameTime();
 
 				if (framesCounter >= framesSpeed)
 				{
@@ -166,7 +164,7 @@ namespace app
 
 					if (currentFrame > 4) currentFrame = 0;
 
-					frameRec.y = (float)currentFrame*(float)shipTexture.height/4 ;
+					frameRec.y = (float)currentFrame*(float)shipTexture.height / 4;
 				}
 
 				// Player logic: movement
@@ -174,10 +172,22 @@ namespace app
 				destRec.y = ship.position.y;
 
 				// Collision logic: player vs walls
-				if (ship.position.x >= GetScreenWidth()-shipHeight*2) ship.position.x = GetScreenWidth()-shipHeight*2;
-				else if (ship.position.x < (shipHeight/2)) ship.position.x =shipHeight/2;
-				if (ship.position.y > (GetScreenHeight() - shipHeight*2)) ship.position.y = GetScreenHeight() - shipHeight*2;
-				else if (ship.position.y < (shipHeight/2)) ship.position.y = shipHeight/2;
+				if (ship.position.x >= GetScreenWidth() - shipHeight * 2)
+				{
+					ship.position.x = GetScreenWidth() - shipHeight * 2;
+				}
+				else if (ship.position.x < (shipHeight / 2))
+				{
+					ship.position.x = shipHeight / 2;
+				}
+				if (ship.position.y > (GetScreenHeight() - shipHeight * 2))
+				{
+					ship.position.y = GetScreenHeight() - shipHeight * 2;
+				}
+				else if (ship.position.y < (shipHeight / 2))
+				{
+					ship.position.y = shipHeight / 2;
+				}
 
 				// Shot logic
 				for (int i = 0; i < shipMaxShoots; i++)
@@ -207,8 +217,6 @@ namespace app
 						}
 					}
 				}
-
-				//ship.collider = { ship.position.x + sin(ship.rotation*DEG2RAD)*(shipHeight / 2.5f), ship.position.y - cos(ship.rotation*DEG2RAD)*(shipHeight / 2.5f), shipColliderZ };
 				ship.collider = { ship.position.x+shipHeight*1.5f, ship.position.y+shipHeight, shipColliderZ };
 			}
 		}
@@ -224,7 +232,6 @@ namespace app
 			Vector2 v1 = { ship.position.x + sinf(ship.rotation*DEG2RAD)*(shipHeight), ship.position.y - cosf(ship.rotation*DEG2RAD)*(shipHeight) };
 			Vector2 v2 = { ship.position.x - cosf(ship.rotation*DEG2RAD)*(shipBaseSize / 2), ship.position.y - sinf(ship.rotation*DEG2RAD)*(shipBaseSize / 2) };
 			Vector2 v3 = { ship.position.x + cosf(ship.rotation*DEG2RAD)*(shipBaseSize / 2), ship.position.y + sinf(ship.rotation*DEG2RAD)*(shipBaseSize / 2) };
-			//DrawTexturePro(shipTexture, frameRec, destRec, { (float)(shipTexture.width / 2),(float)(shipTexture.height / 2) }, ship.rotation, WHITE);
 			DrawTextureRec(shipTexture, frameRec, ship.position, WHITE);
 			for (int i = 0; i < shipMaxShoots; i++)
 			{

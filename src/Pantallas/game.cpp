@@ -56,7 +56,7 @@ namespace app
 
 		void InitValues()
 		{
-			sizeText = (GetScreenWidth() * 20) / 1600;
+			sizeText = (GetScreenWidth() * 22) / 1600;
 			textPositionX = GetScreenWidth()*0.01f;
 			textPositionY = GetScreenHeight() * 0.97f;
 

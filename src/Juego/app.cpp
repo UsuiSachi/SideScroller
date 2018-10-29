@@ -45,13 +45,13 @@ namespace app
 		UpdateMusicStream(menuSong);
 		if (mute)
 		{
-				pauseMusic = !pauseMusic;
-				pauseSoundShoot = !pauseSoundShoot;
-				pauseSoundExplosion = !pauseSoundExplosion;
+			pauseMusic = !pauseMusic;
+			pauseSoundShoot = !pauseSoundShoot;
+			pauseSoundExplosion = !pauseSoundExplosion;
 
-				if (pauseMusic) StopMusicStream(menuSong);
-				else PlayMusicStream(menuSong);
-				mute = false;
+			if (pauseMusic) StopMusicStream(menuSong);
+			else PlayMusicStream(menuSong);
+			mute = false;
 		}
 		switch (currentScreen)
 		{

@@ -44,6 +44,8 @@ namespace app
 		static Color colorRect3;
 		static Color colorRect4;
 		static bool cambiarTexto;
+		static int halfScreenX;
+		static int halfScreenY;
 
 		static const int scaleAux1 = 800;
 		static const int scaleAux2 = 1600;
@@ -57,21 +59,23 @@ namespace app
 		{
 			menuImage = LoadImage("res/assets/backMenu.png");
 			menuImageTexture = LoadTextureFromImage(menuImage);
+			halfScreenX = GetScreenWidth() / 2;
+			halfScreenY = GetScreenHeight() / 2;
 
 			sizeText2 = (GetScreenWidth() * 20) / scaleAux1;
 			sizeText3 = (GetScreenWidth() * 15) / scaleAux1;
-			text1PositionX = GetScreenWidth() / 2 - MeasureText(text1, sizeText2) / 2;
-			text1PositionY = GetScreenHeight() / 2 + GetScreenHeight() * 0.0333333;
-			text2PositionX = GetScreenWidth() / 2 - MeasureText(text2, sizeText2) / 2;
-			text2PositionY = GetScreenHeight() / 2 + GetScreenHeight() * 0.1333333;
-			text3PositionX = GetScreenWidth() / 2 - MeasureText(text3, sizeText2) / 2;
-			text3PositionY = GetScreenHeight() / 2 + GetScreenHeight() * 0.2333333;
-			text4PositionX = GetScreenWidth() / 2 - MeasureText(text4, sizeText2) / 2;
-			text4PositionY = GetScreenHeight() / 2 + GetScreenHeight() * 0.3333333;
+			text1PositionX = halfScreenX - MeasureText(text1, sizeText2) / 2;
+			text1PositionY = halfScreenY + GetScreenHeight() * 0.0333333;
+			text2PositionX = halfScreenX - MeasureText(text2, sizeText2) / 2;
+			text2PositionY = halfScreenY + GetScreenHeight() * 0.1333333;
+			text3PositionX = halfScreenX - MeasureText(text3, sizeText2) / 2;
+			text3PositionY = halfScreenY + GetScreenHeight() * 0.2333333;
+			text4PositionX = halfScreenX - MeasureText(text4, sizeText2) / 2;
+			text4PositionY = halfScreenY + GetScreenHeight() * 0.3333333;
 			text5PositionX = GetScreenWidth() * 0.05;
 			text5PositionY = GetScreenHeight() * 0.95;
-			text6PositionX = GetScreenWidth() / 2 - MeasureText(text6, sizeText2) / 2;
-			text6PositionY = GetScreenHeight() / 2 + GetScreenHeight() * 0.1333333;
+			text6PositionX = halfScreenX - MeasureText(text6, sizeText2) / 2;
+			text6PositionY = halfScreenY + GetScreenHeight() * 0.1333333;
 
 			cambiarTexto = false;
 
@@ -82,23 +86,23 @@ namespace app
 
 			rect1.height = (GetScreenWidth() * 80) / scaleAux2;
 			rect1.width = (GetScreenWidth() * 255) / scaleAux2;
-			rect1.x= GetScreenWidth() / 2 - rect1.width / 2;
-			rect1.y= GetScreenHeight() / 2 + GetScreenHeight() * 0.11;
+			rect1.x= halfScreenX - rect1.width / 2;
+			rect1.y= halfScreenY + GetScreenHeight() * 0.11;
 
 			rect2.height = (GetScreenWidth() * 80) / scaleAux2;
 			rect2.width = (GetScreenWidth() * 255) / scaleAux2;
-			rect2.x = GetScreenWidth() / 2 - rect1.width / 2;
-			rect2.y = GetScreenHeight() / 2 + GetScreenHeight() * 0.21;
+			rect2.x = halfScreenX - rect1.width / 2;
+			rect2.y = halfScreenY + GetScreenHeight() * 0.21;
 
 			rect3.height = (GetScreenWidth() * 80) / scaleAux2;
 			rect3.width = (GetScreenWidth() * 255) / scaleAux2;
-			rect3.x = GetScreenWidth() / 2 - rect1.width / 2;
-			rect3.y = GetScreenHeight() / 2 + GetScreenHeight() * 0.31;
+			rect3.x = halfScreenX - rect1.width / 2;
+			rect3.y = halfScreenY + GetScreenHeight() * 0.31;
 
 			rect4.height = (GetScreenWidth() * 80) / scaleAux2;
 			rect4.width = (GetScreenWidth() * 255) / scaleAux2;
-			rect4.x = GetScreenWidth() / 2 - rect1.width / 2;
-			rect4.y = GetScreenHeight() / 2 + GetScreenHeight() * 0.01;
+			rect4.x = halfScreenX - rect1.width / 2;
+			rect4.y = halfScreenY + GetScreenHeight() * 0.01;
 
 			scaleBackground= (GetScreenWidth() * 1.0f) / scaleAux3;
 

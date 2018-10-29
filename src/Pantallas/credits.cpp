@@ -53,6 +53,7 @@ namespace app
 		static int text11PositionY = 0;
 		static int text12PositionX = 0;
 		static int text12PositionY = 0;
+		static int halfScreen = 0;
 
 		static const int scaleAux1 = 800;
 		static const int scaleAux2 = 1600;
@@ -66,36 +67,38 @@ namespace app
 			sizeText = (GetScreenWidth() * 20) / scaleAux1;
 			sizeText2 = (GetScreenWidth() * 15) / scaleAux1;
 			sizeText3 = (GetScreenWidth() * 9.8f) / scaleAux1;
-			textPositionX = GetScreenWidth() / 2 - MeasureText(text1, sizeText) / 2;
+			halfScreen = GetScreenWidth() / 2;
+
+			textPositionX = halfScreen - MeasureText(text1, sizeText) / 2;
 			textPositionY = GetScreenHeight() * 0.13;
-			text2PositionX = GetScreenWidth() / 2 - MeasureText(text2, sizeText) / 2;
+			text2PositionX = halfScreen - MeasureText(text2, sizeText) / 2;
 			text2PositionY = GetScreenHeight() * 0.21;
-			text6PositionX = GetScreenWidth() / 2 - MeasureText(text6, sizeText) / 2;
+			text6PositionX = halfScreen - MeasureText(text6, sizeText) / 2;
 			text6PositionY = GetScreenHeight() * 0.29;
-			text3PositionX = GetScreenWidth() / 2 - MeasureText(text3, sizeText) / 2;
+			text3PositionX = halfScreen - MeasureText(text3, sizeText) / 2;
 			text3PositionY = GetScreenHeight() * 0.37;
-			text4PositionX = GetScreenWidth() / 2 - MeasureText(text4, sizeText2) / 2;
+			text4PositionX = halfScreen - MeasureText(text4, sizeText2) / 2;
 			text4PositionY = GetScreenHeight() * 0.80;
-			text5PositionX = GetScreenWidth() / 2 - MeasureText(text5, sizeText) / 2;
+			text5PositionX = halfScreen - MeasureText(text5, sizeText) / 2;
 			text5PositionY = GetScreenHeight() * 0.05;
-			text7PositionX= GetScreenWidth() / 2 - MeasureText(text7, sizeText) / 2;
+			text7PositionX= halfScreen - MeasureText(text7, sizeText) / 2;
 			text7PositionY= GetScreenHeight() * 0.45;
-			text8PositionX = GetScreenWidth() / 2 - MeasureText(text8, sizeText3) / 2;
+			text8PositionX = halfScreen - MeasureText(text8, sizeText3) / 2;
 			text8PositionY = GetScreenHeight() * 0.53;
-			text9PositionX = GetScreenWidth() / 2 - MeasureText(text9, sizeText3) / 2;
+			text9PositionX = halfScreen - MeasureText(text9, sizeText3) / 2;
 			text9PositionY = GetScreenHeight() * 0.58;
-			text10PositionX = GetScreenWidth() / 2 - MeasureText(text10, sizeText3) / 2;
+			text10PositionX = halfScreen - MeasureText(text10, sizeText3) / 2;
 			text10PositionY = GetScreenHeight() * 0.63;
 			text11PositionX = GetScreenWidth() / 2 - MeasureText(text11, sizeText3) / 2;
 			text11PositionY = GetScreenHeight() * 0.68;
-			text12PositionX = GetScreenWidth() / 2 - MeasureText(text12, sizeText3) / 2;
+			text12PositionX = halfScreen - MeasureText(text12, sizeText3) / 2;
 			text12PositionY = GetScreenHeight() * 0.73;
 
 			colorRect1 = PURPLE;
 
 			rect1.height = (GetScreenWidth() * 80) / scaleAux2;
 			rect1.width = (GetScreenWidth() * 170) / scaleAux2;
-			rect1.x = GetScreenWidth() / 2 - rect1.width / 2;
+			rect1.x = halfScreen - rect1.width / 2;
 			rect1.y = GetScreenHeight() / 2 + GetScreenHeight() * 0.275;
 		}
 
@@ -110,7 +113,6 @@ namespace app
 				{
 					currentScreen = Menu;
 					InitMenu();
-					//ResetValues();
 				}
 			}
 			else colorRect1.a = 255;
