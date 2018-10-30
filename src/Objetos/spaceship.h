@@ -36,7 +36,33 @@ namespace app
 		extern Spaceship ship;
 		extern const int shipMaxShoots;
 		extern Shoot shoot[];
-		extern bool pauseSoundShoot;
+		extern Shoot bombs[];
+		//extern bool pauseSoundShoot;
 	}
 }
 #endif // !SPACESHIP_H
+/*
+if (shoot[i].active)
+{
+// Movement
+shoot[i].position.x += shoot[i].speed.x*GetFrameTime();
+shoot[i].position.y -= shoot[i].speed.y*GetFrameTime();
+
+// Collision logic: shoot vs walls
+if (shoot[i].position.x > GetScreenWidth() + shoot[i].radius)
+{
+shoot[i].active = false;
+}
+else if (shoot[i].position.x < 0 - shoot[i].radius)
+{
+shoot[i].active = false;
+}
+if (shoot[i].position.y > GetScreenHeight() + shoot[i].radius)
+{
+shoot[i].active = false;
+}
+else if (shoot[i].position.y < 0 - shoot[i].radius)
+{
+shoot[i].active = false;
+}
+*/

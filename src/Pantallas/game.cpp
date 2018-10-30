@@ -17,9 +17,11 @@ namespace app
 		extern bool victory = false;
 		extern bool gameOver = false;
 		static char text[] = "W A S D : movimiento, CLICK IZQ: Disparar";
+		static char text2[] = "F : Bomba";
 		static int sizeText;
 		static float textPositionX;
 		static float textPositionY;
+		static float textPositionY2;
 
 		//Imagenes y texturas
 
@@ -59,6 +61,7 @@ namespace app
 			sizeText = (GetScreenWidth() * 22) / 1600;
 			textPositionX = GetScreenWidth()*0.01f;
 			textPositionY = GetScreenHeight() * 0.97f;
+			textPositionY2 = GetScreenHeight() * 0.9f;
 
 			backImage = LoadImage("res/assets/parallax.png");
 			backImage2 = LoadImage("res/assets/parallax2.png");
@@ -169,6 +172,7 @@ namespace app
 			DrawRectangleRec(botonPausa1, colorRect);
 			DrawRectangleRec(botonPausa2, colorRect);
 			DrawText(text, textPositionX, textPositionY, sizeText, PURPLE);
+			DrawText(text2, textPositionX, textPositionY2, sizeText, PURPLE);
 		}
 
 		void ResetValues()

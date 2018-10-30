@@ -15,6 +15,7 @@ namespace app
 	namespace spaceship
 	{
 		extern const int shipMaxShoots = 10;
+		extern const int shipMaxBombs = 5;
 		Spaceship ship;
 		static float shipBaseSize = 20.0f;
 		static float shipSpeed = 200.0f;
@@ -23,12 +24,15 @@ namespace app
 		static const float shipColliderZ = 24.0f;
 		static const float speedBoost = 3.5f; //variable para que la velocidad se ajuste al GetFrameTime
 		Shoot shoot[shipMaxShoots];
+		Shoot bombs[shipMaxBombs];
 
 		//Imagenes y texturas
 		static Image shipImage;
 		static Image shootImage;
+		static Image bombImage;
 		static Texture2D backTexture;
 		static Texture2D shootTexture;
+		static Texture2D bombTexture;
 		static Texture2D shipTexture;
 		static Rectangle sourceRect;
 		static Rectangle destRec;
@@ -36,7 +40,9 @@ namespace app
 		//Escala las texturas
 		static float shipScale;
 		static float shootScale;
+		static float bombScale;
 		static Vector2 shootScalePos;
+		static Vector2 bombScalePos;
 
 		static Rectangle frameRec;
 		static int currentFrame;
@@ -45,8 +51,8 @@ namespace app
 		static float framesSpeed;
 
 		//Sonidos 
-		static Sound shootSound;
-		bool pauseSoundShoot = false;
+		/*static Sound shootSound;
+		bool pauseSoundShoot = false;*/
 
 		static Vector2 mousePoint;
 
@@ -55,13 +61,15 @@ namespace app
 
 		void InitSpaceship()
 		{
-			shootSound = LoadSound("res/assets/shoot.wav");
+			//shootSound = LoadSound("res/assets/shoot.wav");
 			shootImage = LoadImage("res/assets/shoot.png");
 			shipImage = LoadImage("res/assets/spriteSheet.png");
+			bombImage = LoadImage("res/assets/bomb.png");
 
 
 			shipTexture = LoadTextureFromImage(shipImage);
 			shootTexture = LoadTextureFromImage(shootImage);
+			bombTexture = LoadTextureFromImage(bombImage);
 			sourceRect.height = shipTexture.height;
 			sourceRect.width = shipTexture.width;
 			sourceRect.x = 0;
@@ -74,14 +82,14 @@ namespace app
 			ship.acceleration = { 0, 0 };
 			ship.speed = { 0, 0 };
 			ship.rotation = 90;
-			ship.collider = { ship.position.x + shipHeight * 1.5f , ship.position.y+shipHeight, shipColliderZ };
+			ship.collider = { ship.position.x + shipHeight * 1.5f , ship.position.y + shipHeight, shipColliderZ };
 			ship.color = LIGHTGRAY;
 
-			frameRec = { 0.0f, 0.0f, (float)shipTexture.width, (float)shipTexture.height/4 };
+			frameRec = { 0.0f, 0.0f, (float)shipTexture.width, (float)shipTexture.height / 4 };
 			currentFrame = 0;
 
 			framesCounter = 0;
-			framesSpeed =0.05f;
+			framesSpeed = 0.05f;
 
 			for (int i = 0; i < shipMaxShoots; i++)
 			{
@@ -91,10 +99,19 @@ namespace app
 				shoot[i].active = false;
 				shoot[i].color = WHITE;
 			}
-
+			for (int i = 0; i < shipMaxBombs; i++)
+			{
+				bombs[i].position = { 0, 0 };
+				bombs[i].speed = { 0, 10 };
+				bombs[i].radius = 20;
+				bombs[i].active = false;
+				bombs[i].color = WHITE;
+			}
 			shipScale = (GetScreenWidth()* 0.08f) / scaleAux;
 			shootScale = (GetScreenWidth()* 1.0f) / scaleAux;
 			shootScalePos = { (shootScale*shootImage.width) / 2 ,(shootScale*shootImage.height) / 2 };
+			bombScale = (GetScreenWidth()* 1.0f) / scaleAux;
+			bombScalePos = { (bombScale*bombImage.width) / 2 ,(bombScale*bombImage.height) / 2 };
 
 			destRec.width = shipTexture.width;
 			destRec.height = shipTexture.height;
@@ -108,31 +125,32 @@ namespace app
 
 			if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
 			{
-				if (!pauseSoundShoot)
+				/*if (!pauseSoundShoot)
 				{
 					PlaySound(shootSound);
 				}
 				else
 				{
 					PauseSound(shootSound);
-				}
+				}*/
 				init = true;
 				for (int i = 0; i < shipMaxShoots; i++)
 				{
 					if (!shoot[i].active)
 					{
-						shoot[i].position = { (ship.position.x + sin(ship.rotation*DEG2RAD)*(shipHeight*2)), (ship.position.y+shipHeight )};
+						shoot[i].position = { (ship.position.x + sin(ship.rotation*DEG2RAD)*(shipHeight * 2)), (ship.position.y + shipHeight) };
 						shoot[i].active = true;
-						shoot[i].speed.x = speedBoost *sin(ship.rotation*DEG2RAD)*shipSpeed;
-						shoot[i].speed.y = speedBoost *cos(ship.rotation*DEG2RAD)*shipSpeed;
+						shoot[i].speed.x = speedBoost * sin(ship.rotation*DEG2RAD)*shipSpeed;
+						shoot[i].speed.y = speedBoost * cos(ship.rotation*DEG2RAD)*shipSpeed;
 						shoot[i].rotation = ship.rotation;
 						break;
 					}
+
 				}
 			}
 			if (IsKeyDown(KEY_A))
 			{
-				ship.position.x -= GetFrameTime() * shipSpeed;		
+				ship.position.x -= GetFrameTime() * shipSpeed;
 			}
 			if (IsKeyDown(KEY_D))
 			{
@@ -145,6 +163,20 @@ namespace app
 			if (IsKeyDown(KEY_S))
 			{
 				ship.position.y += GetFrameTime() * shipSpeed;
+			}
+			if (IsKeyPressed(KEY_F))
+			{
+				for (int i = 0; i < shipMaxBombs; i++)
+				{
+					if (!bombs[i].active)
+					{
+						bombs[i].position = { (ship.position.x + sin(ship.rotation*DEG2RAD)*(shipHeight * 2)), (ship.position.y + shipHeight) };
+						bombs[i].active = true;
+						bombs[i].speed.x = speedBoost * sin(ship.rotation*DEG2RAD)*shipSpeed;
+						bombs[i].speed.y = speedBoost * cos(ship.rotation*DEG2RAD)*shipSpeed;
+						bombs[i].rotation = ship.rotation;
+					}
+				}
 			}
 		}
 
@@ -216,8 +248,33 @@ namespace app
 							shoot[i].active = false;
 						}
 					}
+					//bomb logic
+					if (bombs[i].active)
+					{
+						//Movement
+						bombs[i].position.y -= bombs[i].speed.y*GetFrameTime();
+						bombs[i].position.x += bombs[i].speed.x*GetFrameTime();
+
+						//Bombs collission vs walls
+						if (bombs[i].position.x > GetScreenWidth() + bombs[i].radius)
+						{
+							bombs[i].active = false;
+						}
+						else if (bombs[i].position.x < 0 - bombs[i].radius)
+						{
+							bombs[i].active = false;
+						}
+						if (bombs[i].position.y > GetScreenHeight() + bombs[i].radius)
+						{
+							bombs[i].active = false;
+						}
+						else if (bombs[i].position.y < 0 - bombs[i].radius)
+						{
+							bombs[i].active = false;
+						}
+					}
 				}
-				ship.collider = { ship.position.x+shipHeight*1.5f, ship.position.y+shipHeight, shipColliderZ };
+				ship.collider = { ship.position.x + shipHeight * 1.5f, ship.position.y + shipHeight, shipColliderZ };
 			}
 		}
 
@@ -237,18 +294,23 @@ namespace app
 			{
 				if (shoot[i].active)
 				{
-					DrawCircleV(shoot[i].position, shoot[i].radius, WHITE);
 					DrawTextureEx(shootTexture, { shoot[i].position.x - shootScalePos.x ,shoot[i].position.y - shootScalePos.y }, 0, shootScale, WHITE);
+				}
+				if (bombs[i].active)
+				{
+					DrawTextureEx(bombTexture, { bombs[i].position.x - bombScalePos.x ,bombs[i].position.y - bombScalePos.y }, 0, bombScale, WHITE);
 				}
 			}
 		}
 
 		void UnloadSpaceship()
 		{
-			UnloadSound(shootSound);
+			//UnloadSound(shootSound);
 			UnloadTexture(shipTexture);
 			UnloadTexture(shootTexture);
+			UnloadTexture(bombTexture);
 			UnloadImage(shootImage);
+			UnloadImage(bombImage);
 			UnloadImage(shipImage);
 		}
 
@@ -283,10 +345,19 @@ namespace app
 				shoot[i].active = false;
 				shoot[i].color = WHITE;
 			}
-
+			for (int i = 0; i < shipMaxBombs; i++)
+			{
+				bombs[i].position = { 0, 0 };
+				bombs[i].speed = { 0, 10 };
+				bombs[i].radius = 20;
+				bombs[i].active = false;
+				bombs[i].color = WHITE;
+			}
 			shipScale = (GetScreenWidth()* 0.08f) / scaleAux;
 			shootScale = (GetScreenWidth()* 1.0f) / scaleAux;
 			shootScalePos = { (shootScale*shootImage.width) / 2 ,(shootScale*shootImage.height) / 2 };
+			bombScale = (GetScreenWidth()* 1.0f) / scaleAux;
+			bombScalePos = { (bombScale*bombImage.width) / 2 ,(bombScale*bombImage.height) / 2 };
 
 			destRec.width = shipTexture.width;
 			destRec.height = shipTexture.height;

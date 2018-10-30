@@ -36,15 +36,15 @@ namespace app
 		static Vector2 bigMeteorScalePos;
 
 		//Sonidos 
-		static Sound explosionSound;
-		bool pauseSoundExplosion=false;
+		/*static Sound explosionSound;
+		bool pauseSoundExplosion=false;*/
 
 		static bool init;
 		static int scaleAux = 1600;
 
 		void InitMeteors()
 		{
-			explosionSound = LoadSound("res/assets/explosion.wav");
+			//explosionSound = LoadSound("res/assets/explosion.wav");
 			meteorImage = LoadImage("res/assets/asteroide.png");
 	
 			meteorTexture = LoadTextureFromImage(meteorImage);
@@ -139,22 +139,43 @@ namespace app
 						{
 							if (bigMeteor[a].active && CheckCollisionCircles(shoot[i].position, shoot[i].radius, bigMeteor[a].position, bigMeteor[a].radius))
 							{
-								if (!pauseSoundExplosion)
+								/*if (!pauseSoundExplosion)
 								{
 									PlaySound(explosionSound);
 								}
 								else
 								{
 									PauseSound(explosionSound);
-								}
+								}*/
 								shoot[i].active = false;
 								bigMeteor[a].active = false;
 								destroyedMeteorsCount++;
 								a = maxBigMeteors;
 							}
+							
 						}
 
 						
+					}
+					if ((bombs[i].active))
+					{
+						for (int a = 0; a < maxBigMeteors; a++)
+						{
+							if (bigMeteor[a].active && CheckCollisionCircles(bombs[i].position, bombs[i].radius, bigMeteor[a].position, bigMeteor[a].radius))
+							{
+								/*if (!pauseSoundExplosion)
+								{
+								PlaySound(explosionSound);
+								}
+								else
+								{
+								PauseSound(explosionSound);
+								}*/
+								bigMeteor[a].active = false;
+								destroyedMeteorsCount++;
+								a = maxBigMeteors;
+							}
+						}
 					}
 				}
 			}
@@ -182,7 +203,7 @@ namespace app
 
 		void UnloadMeteors()
 		{
-			UnloadSound(explosionSound);
+			//UnloadSound(explosionSound);
 			UnloadTexture(meteorTexture);
 			UnloadImage(meteorImage);
 		}

@@ -22,7 +22,7 @@ namespace app
 		void UnloadMeteors();
 		void ResetMeteors();
 
-		extern bool pauseSoundExplosion;
+		//extern bool pauseSoundExplosion;
 	}
 }
 #endif // !METEORS_H

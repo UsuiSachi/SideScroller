@@ -30,19 +30,19 @@ namespace app
 	{
 		SetExitKey(0);
 		InitWindow(screenWidth, screenHeight, "GRAD10S");
-		InitAudioDevice();
+		//InitAudioDevice();
 		InitMenu();
 		InitCredits();
 		InitGameover();
 		InitPause();
-		menuSong = LoadMusicStream("res/assets/menusong2.ogg");
-		PlayMusicStream(menuSong);
+		//menuSong = LoadMusicStream("res/assets/menusong2.ogg");
+		//PlayMusicStream(menuSong);
 
 	}
 
 	static void UpdateGame()
 	{
-		UpdateMusicStream(menuSong);
+		/*UpdateMusicStream(menuSong);
 		if (mute)
 		{
 			pauseMusic = !pauseMusic;
@@ -52,7 +52,7 @@ namespace app
 			if (pauseMusic) StopMusicStream(menuSong);
 			else PlayMusicStream(menuSong);
 			mute = false;
-		}
+		}*/
 		switch (currentScreen)
 		{
 		case Menu:
@@ -103,7 +103,7 @@ namespace app
 
 	static void CloseGame()
 	{
-		CloseAudioDevice();
+		//CloseAudioDevice();
 		CloseWindow();
 	}
 
