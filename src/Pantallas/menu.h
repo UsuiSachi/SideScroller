@@ -9,6 +9,8 @@ namespace app
 		void UpdateMenu();
 		void DrawMenu();
 		void UnloadMenu();
+
+		extern bool cambiarTexto;
 	}
 }
 #endif // !MENU_H

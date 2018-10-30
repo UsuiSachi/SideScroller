@@ -43,7 +43,7 @@ namespace app
 		static Color colorRect2;
 		static Color colorRect3;
 		static Color colorRect4;
-		static bool cambiarTexto;
+		extern bool cambiarTexto=false;
 		static int halfScreenX;
 		static int halfScreenY;
 
@@ -76,8 +76,6 @@ namespace app
 			text5PositionY = GetScreenHeight() * 0.95;
 			text6PositionX = halfScreenX - MeasureText(text6, sizeText2) / 2;
 			text6PositionY = halfScreenY + GetScreenHeight() * 0.1333333;
-
-			cambiarTexto = false;
 
 			colorRect1 = PURPLE;
 			colorRect2 = PURPLE;

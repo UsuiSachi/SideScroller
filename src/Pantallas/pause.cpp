@@ -49,8 +49,6 @@ namespace app
 		static int halfScreenX;
 		static int halfScreenY;
 
-		static bool cambiarTexto;
-
 		static const int scaleAux1 = 800;
 		static const int scaleAux2 = 1600;
 
@@ -74,8 +72,6 @@ namespace app
 			text5PositionY = halfScreenY + GetScreenHeight() * 0.0333333;
 			textAuxPositionX = halfScreenX - MeasureText(textAux, sizeText2) / 2;
 			textAuxPositionY = halfScreenY + GetScreenHeight() * 0.2333333;
-
-			cambiarTexto = false;
 
 			colorRect1 = PURPLE;
 			colorRect2 = PURPLE;
